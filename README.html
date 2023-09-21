@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>is</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="is">is</h1>
+<p>Set of shortands of <code>Object.prototype.toString</code> for simple type check. Need to fast and basic type check of some data and don't want to include heavy libraries? You are welcome. Here is only few lines of code. In case if you need more complex data check - that set isn't what you looking for. Try to take a look to Schema, lodash and others.</p>
+<p>Набор сокращений <code>Object.prototype.toString</code> для простой проверки типов. Нужна быстрая и простая проверка типа и не хочется подключать тяжелые комбайны? Эта библиотека именно то, что вам нужно. Если вам нужна более тщательная и сложная проверка данных - этот набор не то, что вы ищета. Попробуйте взглянуть на Schema, lodash или другие аналоги.</p>
+<h2 id="install">Install</h2>
+<pre><code>npm i @voidvolker/is
+</code></pre>
+<p>No any additional dependencies is used.</p>
+<h2 id="use">Use</h2>
+<p>ES module:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { isBoolean,isNumber,isString,isArray,isObject,isFunction,typeGet } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;is.js&#x27;</span>
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isBoolean</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isString</span>(<span class="hljs-string">&#x27;string&#x27;</span>))
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">typeGet</span>([]))
+</code></pre>
+<p>Require:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { isBoolean,isNumber,isString,isArray,isObject,isFunction,typeGet } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dist/commonjs/is.cjs&#x27;</span>)
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isBoolean</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isString</span>(<span class="hljs-string">&#x27;string&#x27;</span>))
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">typeGet</span>([]))
+</code></pre>
+<p>Coffee script:</p>
+<pre><code class="language-coffee"><span class="hljs-keyword">import</span> {
+    isBoolean
+    isNumber
+    isString
+    isArray
+    isObject
+    isFunction
+    typeGet
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;is.js&#x27;</span>
+
+console.log isBoolean <span class="hljs-literal">true</span>
+console.log isString <span class="hljs-string">&#x27;string&#x27;</span>
+console.log typeGet []
+</code></pre>
+<h2 id="exports">Exports</h2>
+<ul>
+<li><code>isBoolean(v)</code></li>
+<li><code>isNumber(v)</code> - Excludes NaN, includes <code>Number()</code> type and Infinity</li>
+<li><code>isString(v)</code></li>
+<li><code>isArray(v)</code> -&gt; <code>Array.isArray</code></li>
+<li><code>isObject(v)</code></li>
+<li><code>isFunction(v)</code></li>
+<li><code>typeGet(v)</code> - returns string with string like <code>Boolean</code>,<code>Number</code> and etc. Warning! Useless for NaN: <code>typeGet(NaN) === 'Number'</code></li>
+</ul>
+<h2 id="exactly-types-checks">Exactly types checks</h2>
+<p>Run command to get full report for each value type results:</p>
+<pre><code>npm i -D
+npm test
+</code></pre>
+<p>Details can be found in <code>test/is.spec.coffee</code> file.</p>
+<h2 id="dev">Dev</h2>
+<p>To update dependencies use <code>ncu</code> module.</p>
+<h3 id="build">Build</h3>
+<pre><code>npm run build
+</code></pre>
+<p><code>rollup</code> and <code>babel</code> is used for bundling and transforming code for browsers. Take a look to dist folder and take what you need.
+Only compile coffee:</p>
+<pre><code>npm run make
+</code></pre>
+<h3 id="test">Test</h3>
+<pre><code>npm test
+</code></pre>
+<p>And command to watch tests in realtime:</p>
+<pre><code>npm run wt
+</code></pre>
+<h3 id="watch">Watch</h3>
+<pre><code>npm run w
+</code></pre>
+
+        
+        
+    </body>
+    </html>

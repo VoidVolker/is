@@ -1,0 +1,95 @@
+{
+    "env": {
+        "es5": {
+            "plugins": [
+                [
+                    "@babel/plugin-transform-modules-commonjs",
+                    {
+                        "allowTopLevelThis": true
+                    }
+                ]
+            ],
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "useBuiltIns": "entry",
+                        "targets": "> 0.25%, not dead",
+                        "corejs": {
+                            "version": 3
+                        }
+                    }
+                ],
+                [
+                    "minify",
+                    {
+                        "builtIns": false
+                    }
+                ]
+            ],
+            "comments": false,
+            "sourceMaps": true
+        },
+        "browser": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "browsers": "defaults and supports es6-module"
+                        },
+                        "modules": false
+                    }
+                ]
+            ],
+            "comments": false,
+            "sourceMaps": true
+        },
+        "browsermin": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "browsers": "defaults and supports es6-module"
+                        },
+                        "modules": false
+                    }
+                ],
+                [
+                    "minify",
+                    {
+                        "builtIns": false
+                    }
+                ]
+            ],
+            "comments": false,
+            "sourceMaps": true
+        },
+        "commonjs": {
+            "plugins": [
+                [
+                    "@babel/plugin-transform-modules-commonjs",
+                    {
+                        "allowTopLevelThis": true
+                    }
+                ]
+            ],
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "node": "16"
+                        }
+                    }
+                ]
+            ],
+            "comments": true,
+            "sourceMaps": true
+        }
+    },
+    "sourceType": "module",
+    "sourceMaps": true,
+    "plugins": ["minify-builtins"]
+}

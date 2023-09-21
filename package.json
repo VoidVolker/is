@@ -1,0 +1,84 @@
+{
+    "name": "@voidvolker/is",
+    "version": "1.0.0",
+    "author": {
+        "name": "VoidVolker",
+        "email": "vvr@tutanota.com",
+        "url": "https://github.com/VoidVolker"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/VoidVolker/is/issues"
+    },
+    "deprecated": false,
+    "description": "Set of shortands of Object.prototype.toString for fast and simple type check",
+    "homepage": "https://github.com/VoidVolker/is#readme",
+    "keywords": [
+        "types",
+        "is",
+        "isBoolean",
+        "isString",
+        "isArray",
+        "isObject",
+        "isFunction",
+        "isNumber"
+    ],
+    "type": "module",
+    "main": "./src/is.js",
+    "exports": {
+        "require": "./dist/is.cjs",
+        "import": "./src/is.js",
+        "default": "./src/is.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VoidVolker/is.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "cleanup-urls": "for f in src/*.js test/*.js; do awk '!/^\\/\\/# sourceURL/' $f > tmpfile && mv tmpfile $f; done",
+        "make": "coffee -c -b -M ./ && npm run cleanup-urls",
+        "build-commonjs": "cross-env BABEL_ENV=commonjs babel ./src --out-dir ./dist/ --source-maps --delete-dir-on-start --out-file-extension .cjs",
+        "build-browser-lib": "cross-env BABEL_ENV=browser babel ./src --out-dir ./dist/browser/ --source-maps --delete-dir-on-start",
+        "build-browser-bundle": "cross-env BABEL_ENV=browser babel ./dist/is.bundle.js --out-file ./dist/browser/is.bundle.js --source-maps",
+        "build-browser-bundle-min": "cross-env BABEL_ENV=browsermin babel ./dist/is.bundle.js --out-file ./dist/browser/is.bundle.min.js --source-maps",
+        "build-es5": "cross-env BABEL_ENV=es5 babel ./dist/is.bundle.js --out-file ./dist/es5/is.es5.bundle.min.js --source-maps",
+        "build": "npm run make && npm run build-commonjs && rollup -c && npm run build-browser-lib && npm run build-browser-bundle && npm run build-browser-bundle-min &&  npm run build-es5",
+        "test": "node --experimental-vm-modules --no-warnings ./node_modules/.bin/jest",
+        "wt": "node --experimental-vm-modules --no-warnings ./node_modules/.bin/jest --watchAll",
+        "w": "trap 'npm run cleanup-urls' SIGINT && coffee -c -b -M -w ./",
+        "major": "git status && npm version major",
+        "minor": "git status && npm version minor",
+        "patch": "git status && npm version patch"
+    },
+    "jest": {
+        "collectCoverage": true,
+        "coverageReporters": [
+            "html",
+            [
+                "text",
+                {
+                    "skipFull": false
+                }
+            ]
+        ]
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.22.15",
+        "@babel/core": "^7.22.20",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@babel/plugin-transform-modules-commonjs": "^7.22.15",
+        "@babel/preset-env": "^7.22.20",
+        "@types/jest": "^29.5.5",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-minify": "^0.5.2",
+        "babel-register": "^6.26.0",
+        "core-js": "^3.32.2",
+        "cross-env": "^7.0.3",
+        "jest": "^29.7.0",
+        "rollup": "^3.29.2"
+    },
+    "bundleDependencies": []
+}
