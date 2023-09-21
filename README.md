@@ -15,7 +15,15 @@ No any additional dependencies is used.
 ES module:
 
 ```javascript
-import { isBoolean,isNumber,isString,isArray,isObject,isFunction,typeGet } from 'is.js'
+import {
+    isBoolean,
+    isNumber,
+    isString,
+    isArray,
+    isObject,
+    isFunction,
+    typeGet
+} from '@voidvolker/is'
 
 console.log(isBoolean(true)
 console.log(isString('string'))
@@ -25,7 +33,15 @@ console.log(typeGet([]))
 Require:
 
 ```javascript
-const { isBoolean,isNumber,isString,isArray,isObject,isFunction,typeGet } = require('dist/commonjs/is.cjs')
+const {
+    isBoolean,
+    isNumber,
+    isString,
+    isArray,
+    isObject,
+    isFunction,
+    typeGet
+} = require('@voidvolker/is') // -> dist/commonjs/is.cjs
 
 console.log(isBoolean(true)
 console.log(isString('string'))
@@ -43,7 +59,7 @@ import {
     isObject
     isFunction
     typeGet
-} from 'is.js'
+} from '@voidvolker/is'
 
 console.log isBoolean true
 console.log isString 'string'
